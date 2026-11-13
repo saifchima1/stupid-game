@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://ewdentlanus4"]
+
+[ext_resource type="Script" uid="uid://dip5n4jrvo34p" path="res://scripts/player_main.gd" id="1_3vyb7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_30y18"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_30y18"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sh6rx"]
+
+[node name="player" type="CharacterBody2D" unique_id=1756137902]
+script = ExtResource("1_3vyb7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=188594936]
+shape = SubResource("CapsuleShape2D_30y18")
+debug_color = Color(0.7592521, 0.7581912, 0.7552986, 1)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=59216376]
+z_index = 5
+position = Vector2(8.881784e-16, 2.7105054e-20)
+scale = Vector2(19.625, 15.000003)
+mesh = SubResource("CapsuleMesh_30y18")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=1435842883]
+position = Vector2(-20, 0)
+shape = SubResource("CircleShape2D_sh6rx")
+target_position = Vector2(-16, 0)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="player_detector2d" type="Area2D" parent="." unique_id=1363513443]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detector2d" unique_id=1894236924]
+shape = SubResource("CapsuleShape2D_30y18")
+debug_color = Color(0.7592521, 0.7581912, 0.7552986, 1)
+
+[connection signal="area_entered" from="player_detector2d" to="." method="touched_wall"]
+[connection signal="area_exited" from="player_detector2d" to="." method="exited_wall"]
