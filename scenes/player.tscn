@@ -1,36 +1,367 @@
 [gd_scene format=3 uid="uid://ewdentlanus4"]
 
 [ext_resource type="Script" uid="uid://dip5n4jrvo34p" path="res://scripts/player_main.gd" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://c5ctmvpxi1kwf" path="res://images/body.png" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://c1d6jcfy2yye5" path="res://images/arm.png" id="3_dqkch"]
+[ext_resource type="Texture2D" uid="uid://bswexvosnixv5" path="res://images/hand.png" id="4_qlg0r"]
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+resource_name = "RESET"
+length = 2.0333333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D/headbone:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.03),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D/headbone/armrbone:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.03),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(12.683762, -14.426441), Vector2(12.683762, -14.426441)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton2D/headbone/armrbone/handrbone:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.03),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2.0672138, -22.928726), Vector2(2.0672138, -22.928726)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton2D/headbone/armlbone:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.03),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(12.521494, 10.593025), Vector2(12.521494, 10.593025)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton2D/headbone/armlbone/handlbone:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.03),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2.0537708, 20.306824), Vector2(-2.0537708, 20.306824)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton2D/headbone/armlbone/handlbone:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1, 2.03),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [0.0, -0.36647904, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Skeleton2D/headbone/armrbone:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1, 2.03),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [0.0, -0.1934649, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Skeleton2D/headbone/armlbone:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1, 2.03),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [0.0, 0.17371276, 0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Skeleton2D/headbone/armrbone/handrbone:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1, 2.03),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [0.0, 0.41549075, 0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Skeleton2D/headbone/armrbone/handrbone:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Skeleton2D/headbone/armlbone:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Skeleton2D/headbone/armlbone/handlbone:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Skeleton2D/headbone/armrbone:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+resource_name = "vault"
+length = 0.33333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton2D/headbone/armlbone/handlbone:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.3),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [-2.6829214, -3.512574, -1.904363]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton2D/headbone/armlbone:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.3),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [0.6702112, 1.2427404, 2.082993]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton2D/headbone/armrbone/handrbone:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.3),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [2.582065, 3.567772, 1.5374529]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton2D/headbone/armrbone:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.3),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [-2.509183, -1.9753579000000001, -1.0216229]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton2D/headbone/armlbone/handlbone:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton2D/headbone/armlbone:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Skeleton2D/headbone/armrbone/handrbone:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Skeleton2D/headbone/armrbone:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tuyoq"]
+_data = {
+&"RESET": SubResource("Animation_qlg0r"),
+&"vault": SubResource("Animation_tuyoq")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_30y18"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_30y18"]
+radius = 8.62068
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sh6rx"]
 
 [node name="player" type="CharacterBody2D" unique_id=1756137902]
 script = ExtResource("1_3vyb7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=188594936]
-shape = SubResource("CapsuleShape2D_30y18")
-debug_color = Color(0.7592521, 0.7581912, 0.7552986, 1)
+[node name="rootsprite" type="Sprite2D" parent="." unique_id=1154023617]
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=59216376]
+[node name="Skeleton2D" type="Skeleton2D" parent="rootsprite" unique_id=1020659713]
+position = Vector2(2, 12)
+
+[node name="headbone" type="Bone2D" parent="rootsprite/Skeleton2D" unique_id=495197110]
+rotation = -1.6172606
+rest = Transform2D(-0.04644753, -0.99892074, 0.99892074, -0.04644753, 0, 0)
+
+[node name="head" type="Sprite2D" parent="rootsprite/Skeleton2D/headbone" unique_id=134284373]
 z_index = 5
-position = Vector2(8.881784e-16, 2.7105054e-20)
-scale = Vector2(19.625, 15.000003)
-mesh = SubResource("CapsuleMesh_30y18")
+position = Vector2(9.036735, -0.58089495)
+rotation = 1.6172606
+scale = Vector2(0.06796875, 0.06388889)
+texture = ExtResource("2_g2els")
+
+[node name="armrbone" type="Bone2D" parent="rootsprite/Skeleton2D/headbone" unique_id=187589880]
+position = Vector2(12.683762, -14.426441)
+rest = Transform2D(0.9996206, -0.027540352, 0.027540352, 0.9996206, 12.683762, -14.426441)
+
+[node name="armr" type="Sprite2D" parent="rootsprite/Skeleton2D/headbone/armrbone" unique_id=151391301]
+z_index = 11
+position = Vector2(1.5562911, -11.940599)
+rotation = 1.8575501
+scale = Vector2(0.026379693, 0.02313831)
+texture = ExtResource("3_dqkch")
+
+[node name="handrbone" type="Bone2D" parent="rootsprite/Skeleton2D/headbone/armrbone" unique_id=57599140]
+position = Vector2(2.0672138, -22.928726)
+rest = Transform2D(0.998251, 0.059119448, -0.059119448, 0.998251, 2.0672138, -22.928726)
+
+[node name="handr" type="Sprite2D" parent="rootsprite/Skeleton2D/headbone/armrbone/handrbone" unique_id=318836002]
+z_index = 12
+position = Vector2(11.801257, 4.553052)
+rotation = 0.98738617
+scale = Vector2(0.028200835, 0.028443731)
+texture = ExtResource("4_qlg0r")
+
+[node name="armlbone" type="Bone2D" parent="rootsprite/Skeleton2D/headbone" unique_id=1651511405]
+position = Vector2(12.521494, 10.593025)
+rest = Transform2D(0.99969417, 0.02472918, -0.02472918, 0.99969417, 12.521494, 10.593025)
+
+[node name="arml" type="Sprite2D" parent="rootsprite/Skeleton2D/headbone/armlbone" unique_id=46687115]
+z_index = 1
+position = Vector2(0.48799753, 11.034576)
+rotation = 1.2543144
+scale = Vector2(-0.026, 0.023)
+texture = ExtResource("3_dqkch")
+
+[node name="handlbone" type="Bone2D" parent="rootsprite/Skeleton2D/headbone/armlbone" unique_id=561750108]
+position = Vector2(-2.0537708, 20.306824)
+rest = Transform2D(0.9986393, -0.05215241, 0.05215241, 0.9986393, -2.0537708, 20.306824)
+
+[node name="handl" type="Sprite2D" parent="rootsprite/Skeleton2D/headbone/armlbone/handlbone" unique_id=978682411]
+z_index = 11
+position = Vector2(12.298737, -3.8131728)
+rotation = 2.2109919
+scale = Vector2(-0.028, 0.028)
+texture = ExtResource("4_qlg0r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="rootsprite" unique_id=829428115]
+libraries/ = SubResource("AnimationLibrary_tuyoq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=188594936]
+z_index = 10
+position = Vector2(2, 1)
+scale = Vector2(1.3634704, 1.160776)
+shape = SubResource("CapsuleShape2D_30y18")
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=1435842883]
-position = Vector2(-20, 0)
+position = Vector2(25, 0.99999994)
+scale = Vector2(1.25, 1.25)
 shape = SubResource("CircleShape2D_sh6rx")
-target_position = Vector2(-16, 0)
+target_position = Vector2(23, 0)
 collide_with_areas = true
 collide_with_bodies = false
 
 [node name="player_detector2d" type="Area2D" parent="." unique_id=1363513443]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_detector2d" unique_id=1894236924]
+position = Vector2(2, 0.99999994)
+scale = Vector2(1.4799995, 1.2800002)
 shape = SubResource("CapsuleShape2D_30y18")
 debug_color = Color(0.7592521, 0.7581912, 0.7552986, 1)
 

@@ -5,14 +5,18 @@ var maxspeed = 175.0
 const SPEED_DEPT = 35
 const AIR_DEPT = 2.5
 const JUMP_VELOCITY = -400
-var acceleration = 25
-var gravity: Vector2
+const BASE_ACCELERATION = 25.0
+var acceleration = BASE_ACCELERATION
+var BASE_GRAVITY: Vector2
+var gravity:Vector2
 
 var standmesh: float
 var standcoll: float
+var standsp: float
 
 var crouchmesh: float
 var crouchcoll: float
+var crouchsp: float
 var slidedash_time:float = 0
 
 const CROUCH_SCALE = 1.35
@@ -26,7 +30,7 @@ const DASH_SPEED = 450
 var dashing_left = 1
 var isdashing = false
 
-const WALLRUN_DOWNRES: float = 1.075
+const WALLRUN_DOWNRES: float = 2
 var canwallrun = false
 var iswallrunning = false
 var wallrunning_left = 1
@@ -36,7 +40,7 @@ var wallkick_dir = Vector2.ZERO
 const WALLKICK_DURATION = 0.2
 const WALLKICK_SPEED = 450
 
-const VAULTING_DURATION= 0.2
+const VAULTING_DURATION= 0.35
 var vaulttime = 0.0
 var vaultdir = Vector2.ZERO
 var canvault = false
@@ -50,19 +54,24 @@ var slowmo_dur = 0.0
 var slowmo_cd = 0.0
 var isslowmo = false
 
+@onready var animation_player: AnimationPlayer = $rootsprite/AnimationPlayer
 @onready var player: CharacterBody2D = $"."
+
 var Delta = 0.0
 
 var initialize = true
 
+var obstacle: StaticBody2D 
+
 func _physics_process(delta: float) -> void:
 	if initialize:
+		gravity = get_gravity()
 		Delta = delta
 		initialize = false
-		standmesh = $"MeshInstance2D".scale.y
 		standcoll = $"CollisionShape2D".scale.y
-		crouchmesh = $"MeshInstance2D".scale.y/ CROUCH_SCALE
 		crouchcoll = $"CollisionShape2D".scale.y/ CROUCH_SCALE
+		standsp = $"rootsprite/Skeleton2D/headbone/head".scale.y
+		crouchsp = $"rootsprite/Skeleton2D/headbone/head".scale.y/ CROUCH_SCALE
 	
 	if raycast.is_colliding() && raycast.get_collider(0).is_in_group("vault"):
 		canvault = true
@@ -70,6 +79,13 @@ func _physics_process(delta: float) -> void:
 		canvault = false
 	
 	# Add the gravity.
+	
+	#wallgrip
+	if is_on_wall() && not canwallrun:
+		gravity = get_gravity()/3.5
+	else:
+		gravity = get_gravity()
+	
 	if not is_on_floor():
 		velocity += gravity * delta
 	else:
@@ -79,9 +95,12 @@ func _physics_process(delta: float) -> void:
 		
 #vaulting handle
 	if not vaultcd && canvault && Input.is_action_just_pressed("jump"):
+		obstacle = raycast.get_collider(0).get_parent()
+		obstacle.set_collision_layer_value(1,false)
+		animation_player.play("vault")
 		vaultcd = true
 		vaulttime = VAULTING_DURATION
-		var front = -cos(raycast.rotation)*(abs(velocity.x)+100)
+		var front = cos(raycast.rotation)*(abs(velocity.x)+100)
 		vaultdir = Vector2(front, JUMP_VELOCITY/2.75)
 	if vaulttime > 0.0:
 		vaulttime -= delta
@@ -90,7 +109,9 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 	elif vaulttime <= 0.0 && vaultcd:
+		animation_player.play("RESET")
 		vaultcd = false
+		obstacle.set_collision_layer_value(1,true)
 		if Input.is_action_pressed("jump"):
 			slidedash_init(velocity.x,true)
 			move_and_slide()
@@ -109,11 +130,11 @@ func _physics_process(delta: float) -> void:
 	
 	# handle crouch
 	if Input.is_action_just_pressed("down"):
-		$MeshInstance2D.scale.y = crouchmesh
 		$CollisionShape2D.scale.y = crouchcoll
+		$"rootsprite/Skeleton2D/headbone/head".scale.y = crouchsp
 	if Input.is_action_just_released("down"):
-		$MeshInstance2D.scale.y = standmesh
 		$CollisionShape2D.scale.y = standcoll
+		$"rootsprite/Skeleton2D/headbone/head".scale.y = standsp
 	#sliding handling
 	if Input.is_action_pressed("down") && velocity.x != 0:
 		if  is_on_floor():
@@ -157,17 +178,19 @@ func _physics_process(delta: float) -> void:
 			acceleration *= 1.25
 		else:
 			maxspeed = MAXSPEED
-			acceleration /= 1.25
+			acceleration = BASE_ACCELERATION
 	
 	#walking
 	if direction:
 		var move = direction * acceleration
 		if direction >= 0:
-			raycast.rotation_degrees = 180
-			raycast.position.x = player.get_node("CollisionShape2D").shape.radius + 10
-		else:
+			player.get_node("rootsprite").scale.x = 1
 			raycast.rotation_degrees = 0
-			raycast.position.x = -player.get_node("CollisionShape2D").shape.radius - 10
+			raycast.position.x = 25
+		else:
+			player.get_node("rootsprite").scale.x = -1
+			raycast.rotation_degrees = 180
+			raycast.position.x = -25
 		if not is_on_floor():
 			move /= 1.75
 		if abs(velocity.x) < maxspeed || abs(velocity.x + move) < abs(velocity.x):
@@ -175,6 +198,7 @@ func _physics_process(delta: float) -> void:
 				velocity.x = move_toward(velocity.x,0,SPEED_DEPT)
 			velocity.x += move
 	else:
+		animation_player.play("RESET")
 		if is_on_floor():
 			velocity.x = move_toward(velocity.x,0,SPEED_DEPT)
 		else:
